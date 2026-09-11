@@ -4,23 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<title>اختبار أصوات الحروف العربية</title>
+<meta name="theme-color" content="#0f172a">
+<title>اختبار إتقان أصوات الحروف العربية</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;800;900&family=Noto+Naskh+Arabic:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"SF Arabic","Segoe UI",sans-serif}
-*{box-sizing:border-box}body{margin:0;background:#f4f6fa;color:#111827}
-main{max-width:900px;margin:auto;padding:16px}.card{background:#fff;border-radius:24px;padding:22px;box-shadow:0 6px 24px #0001;margin-bottom:16px}
-h1{font-size:28px;margin:0 0 8px}.muted{color:#667085}.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-button,.fileBtn{border:0;border-radius:16px;padding:15px 20px;font-weight:800;font-size:17px;cursor:pointer}
-.primary{background:#111827;color:white}.secondary{background:#eef2f6;color:#111827}.danger{background:#fee4e2;color:#b42318}
-input[type=file]{display:none}.students{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-top:15px}
-.student{text-align:right;border:2px solid #e5e7eb;background:#fff}.student.selected{border-color:#111827}
-.hidden{display:none!important}
-.test{min-height:calc(100vh - 32px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.progress{width:min(700px,94%);height:10px;background:#e5e7eb;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:#111827}
-.target{font-size:clamp(130px,30vw,260px);font-weight:900;line-height:1.1;margin:24px 0;direction:rtl}
-.timer{font-size:20px;color:#667085}.status{font-size:23px;font-weight:800;min-height:34px}.mic{margin-top:10px;font-size:18px}
-.score{font-size:46px;font-weight:900}.errors{display:grid;gap:10px}.error{display:flex;justify-content:space-between;gap:12px;padding:14px;border-radius:15px;background:#fff1f0;border:1px solid #ffd1cc}
-table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #e5e7eb;text-align:right}
+:root{--scale:1;--ui:"Noto Kufi Arabic",-apple-system,BlinkMacSystemFont,"SF Arabic",sans-serif;--display:"Noto Naskh Arabic","Noto Kufi Arabic",serif}
+*{box-sizing:border-box}html{font-size:calc(16px * var(--scale));scroll-behavior:smooth}body{margin:0;background:#f4f7fb;color:#101828;font-family:var(--ui);transition:.2s}button,.fileBtn,input{font-family:inherit}button,.fileBtn{border:0;border-radius:16px;padding:14px 20px;font-weight:800;font-size:1rem;cursor:pointer;touch-action:manipulation}.primary{background:#111827;color:#fff}.secondary{background:#eaf0f6;color:#111827}.danger{background:#fee4e2;color:#b42318}.success{background:#ecfdf3;color:#067647}.small{font-size:.86rem!important;padding:10px 13px!important}input[type=file]{display:none}main{max-width:980px;margin:auto;padding:18px}.card{background:#fff;border-radius:26px;padding:24px;box-shadow:0 8px 30px #10182812;margin-bottom:18px}h1{font-size:1.75rem;margin:0 0 8px}h2{font-size:1.35rem}.muted{color:#667085}.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}.students{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px;margin-top:15px}.student{text-align:right;border:2px solid #e5e7eb;background:#fff}.student.selected{border-color:#111827;box-shadow:0 0 0 3px #11182710}.hidden{display:none!important}.test{min-height:calc(100vh - 36px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.progress{width:min(720px,94%);height:10px;background:#e5e7eb;border-radius:20px;overflow:hidden}.bar{height:100%;width:0;background:#111827;transition:.2s}.target{font-family:var(--display);font-size:clamp(150px,34vw,300px);font-weight:800;line-height:1.15;margin:20px 0;direction:rtl;transform:scale(var(--letter-scale,1));transition:.15s}.timer{font-size:1.1rem;color:#667085}.status{font-size:1.25rem;font-weight:800;min-height:2rem}.mic{margin-top:8px;font-size:1rem}.mic-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:#98a2b3;margin-left:7px}.mic-dot.on{background:#12b76a;box-shadow:0 0 0 5px #12b76a20}.mic-dot.warn{background:#f79009}.mic-meter{width:min(360px,75vw);height:7px;background:#e4e7ec;border-radius:99px;overflow:hidden;margin-top:8px}.mic-meter>span{display:block;height:100%;width:0;background:#12b76a;transition:width .05s}.mic-test{border:1px solid #d0d5dd;padding:14px;border-radius:18px;margin-top:16px;background:#f9fafb}.mic-test strong{display:block;margin-bottom:6px}.zoom{position:fixed;z-index:10;left:14px;bottom:14px;display:flex;gap:7px;background:#fff;padding:8px;border-radius:18px;box-shadow:0 8px 28px #10182820}.zoom button{width:44px;height:44px;padding:0;border-radius:13px}.score{font-size:2.8rem;font-weight:900}.errors{display:grid;gap:10px}.error{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px;border-radius:15px;background:#fff1f0;border:1px solid #ffd1cc}table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px solid #e5e7eb;text-align:right}.file-meta{margin-top:8px;font-size:.9rem;color:#475467}.notice{padding:12px 14px;border-radius:14px;background:#fffaeb;border:1px solid #fedf89;color:#92400e;margin-top:12px}.okbox{padding:12px 14px;border-radius:14px;background:#ecfdf3;border:1px solid #abefc6;color:#067647;margin-top:12px}@media(max-width:600px){main{padding:10px}.card{padding:17px;border-radius:20px}h1{font-size:1.35rem}.students{grid-template-columns:1fr}.target{font-size:clamp(135px,44vw,230px)}.error{flex-direction:column;align-items:flex-start}.row>*{flex:1 1 auto}.zoom{left:8px;bottom:8px}}
 @media print{body{background:white}.noPrint{display:none!important}.card{box-shadow:none}.printArea{display:block!important}}
 </style>
 </head>
@@ -31,16 +22,25 @@ table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px s
 <p class="muted">المستوى الأول: 28 حرفًا مع الفتحة. الطالب ينطق الصوت، ولا يذكر اسم الحرف.</p>
 <div class="row">
 <label class="fileBtn secondary">📋 استيراد كشف الأسماء
-<input id="namesFile" type="file" accept=".txt,.csv">
+<input id="namesFile" type="file" accept=".txt,.csv,.xlsx,.xls,text/plain,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel">
 </label>
-<button id="demo" class="secondary">تجربة</button>
+<button id="demo" class="secondary">👥 تجربة بأسماء جاهزة</button>
+<button id="micTest" class="success">🎙️ اختبار الميكروفون</button>
 </div>
-<p id="info" class="muted"></p>
+<div id="fileMeta" class="file-meta"></div>
+<div id="micBox" class="mic-test hidden">
+<strong><span id="micDot" class="mic-dot"></span><span id="micTestText">اختبار الميكروفون</span></strong>
+<div id="micTestHint" class="muted">اضغط «بدء اختبار الميكروفون» ثم تحدث.</div>
+<div class="mic-meter"><span id="micMeter"></span></div>
+<div class="row" style="margin-top:10px"><button id="micStart" class="primary small">بدء اختبار الميكروفون</button><button id="micStop" class="secondary small">إيقاف</button></div>
+</div>
+<div id="info" class="muted"></div>
 <div id="students" class="students"></div>
 <div class="row" style="margin-top:18px">
 <button id="start" class="primary" disabled>▶️ بدء الاختبار</button>
 <button id="printAll" class="secondary" disabled>🖨️ طباعة كشف جميع الطلاب</button>
 </div>
+<div class="notice">ملاحظة: اختبار الميكروفون يثبت أن Safari يستقبل الصوت. أما التصحيح الصوتي فيعتمد على دعم التعرف على الكلام في Safari.</div>
 </section>
 
 <section id="test" class="card hidden test">
@@ -49,81 +49,50 @@ table{width:100%;border-collapse:collapse}th,td{padding:11px;border-bottom:1px s
 <div id="target" class="target">بَ</div>
 <div id="status" class="status">استعد...</div>
 <div id="timer" class="timer">3.0</div>
-<div id="mic" class="mic">🎙️ الميكروفون</div>
+<div id="mic" class="mic"><span id="liveDot" class="mic-dot"></span>الميكروفون جاهز</div>
+<div class="mic-meter"><span id="liveMeter"></span></div>
 <button id="cancel" class="danger noPrint" style="margin-top:22px">إيقاف الاختبار</button>
 </section>
 
 <section id="result" class="card hidden printArea">
-<h2 id="resultTitle"></h2>
-<div id="score" class="score"></div>
-<p id="percent"></p>
-<h3>الأحرف التي لم يتقنها الطالب</h3>
-<div id="errors" class="errors"></div>
-<div class="row noPrint" style="margin-top:20px">
-<button id="printStudent" class="primary">🖨️ طباعة نتيجة الطالب</button>
-<button id="next" class="secondary">الطالب التالي</button>
-<button id="homeBtn" class="secondary">العودة</button>
-</div>
+<h2 id="resultTitle"></h2><div id="score" class="score"></div><p id="percent"></p>
+<h3>الأحرف التي لم يتقنها الطالب</h3><div id="errors" class="errors"></div>
+<div class="row noPrint" style="margin-top:20px"><button id="printStudent" class="primary">🖨️ طباعة نتيجة الطالب</button><button id="next" class="secondary">الطالب التالي</button><button id="homeBtn" class="secondary">العودة</button></div>
 </section>
-
-<section id="all" class="card hidden printArea">
-<h2>كشف نتائج جميع الطلاب</h2>
-<div id="allTable"></div>
-<div class="row noPrint" style="margin-top:18px">
-<button id="printAll2" class="primary">🖨️ طباعة الكشف</button>
-<button id="back" class="secondary">عودة</button>
-</div>
-</section>
+<section id="all" class="card hidden printArea"><h2>كشف نتائج جميع الطلاب</h2><div id="allTable"></div><div class="row noPrint" style="margin-top:18px"><button id="printAll2" class="primary">🖨️ طباعة الكشف</button><button id="back" class="secondary">عودة</button></div></section>
 </main>
+
+<div class="zoom noPrint" aria-label="تكبير الواجهة"><button id="zoomOut" title="تصغير">−</button><button id="zoomReset" title="الحجم الافتراضي">100%</button><button id="zoomIn" title="تكبير">+</button></div>
 
 <script>
 const letters=["ا","ب","ت","ث","ج","ح","خ","د","ذ","ر","ز","س","ش","ص","ض","ط","ظ","ع","غ","ف","ق","ك","ل","م","ن","ه","و","ي"];
 const targets=letters.map(x=>x+"َ");
 let names=[],sel=0,pos=0,order=[],results={},timer=null,recognizer=null,heard="",finished=false;
+let micStream=null,audioCtx=null,analyser=null,micAnim=null,recognitionAvailable=("SpeechRecognition" in window||"webkitSpeechRecognition" in window);
 const $=x=>document.getElementById(x);
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
 function shuffle(a){a=[...a];for(let i=a.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
-function render(){ $("students").innerHTML=names.map((n,i)=>`<button class="student ${i===sel?'selected':''}" onclick="sel=${i};render()">${i+1}. ${esc(n)}</button>`).join("");$("start").disabled=!names.length}
-$("demo").onclick=()=>{names=["أحمد محمد","محمد علي","عبدالعزيز عادل","فهد خالد","ناصر إبراهيم","سلمان عبدالله"];sel=0;results={};$("info").textContent="تم تحميل أسماء تجريبية.";render()}
-$("namesFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{names=r.result.split(/[\r\n,]+/).map(x=>x.trim()).filter(Boolean).map(x=>x.replace(/^\d+[\s.)-]*/,""));sel=0;results={};$("info").textContent=`تم تحميل ${names.length} اسمًا.`;render()};r.readAsText(f,"UTF-8")}
-$("start").onclick=()=>start(sel);
+function render(){$("students").innerHTML=names.map((n,i)=>`<button class="student ${i===sel?'selected':''}" onclick="sel=${i};render()">${i+1}. ${esc(n)}</button>`).join("");$("start").disabled=!names.length}
+function detectFileType(f){const ext=(f.name.split('.').pop()||'').toLowerCase();if(ext==='xlsx')return'Excel (.xlsx)';if(ext==='xls')return'Excel (.xls)';if(ext==='csv')return'CSV';if(ext==='txt')return'نصي (.txt)';if(f.type==='text/csv')return'CSV';if(f.type==='text/plain')return'نصي';return f.type||'غير معروف'}
+function cleanNames(arr){return arr.flatMap(x=>String(x).split(/[\r\n,;\t]+/)).map(x=>x.trim()).filter(Boolean).map(x=>x.replace(/^\uFEFF/,'').replace(/^\d+[\s.)-]*/,''))}
+async function readXlsx(file){if(!window.XLSX){await new Promise((resolve,reject)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';s.onload=resolve;s.onerror=reject;document.head.appendChild(s)})}const data=await file.arrayBuffer();const wb=XLSX.read(data,{type:'array'});const ws=wb.Sheets[wb.SheetNames[0]];return XLSX.utils.sheet_to_json(ws,{header:1,raw:false}).flat().filter(Boolean)}
+$("demo").onclick=()=>{names=["أحمد محمد","محمد علي","عبدالعزيز عادل","فهد خالد","ناصر إبراهيم","سلمان عبدالله"];sel=0;results={};$("info").textContent="تم تحميل أسماء تجريبية.";$("fileMeta").textContent="";render()};
+$("namesFile").onchange=async e=>{const f=e.target.files[0];if(!f)return;$("info").textContent="جارٍ قراءة الملف...";$("fileMeta").textContent=`نوع الملف المكتشف: ${detectFileType(f)} — ${f.name}`;try{let raw;if(/\.(xlsx|xls)$/i.test(f.name)){raw=await readXlsx(f)}else{raw=(await f.text()).split(/[\r\n,;\t]+/)}names=cleanNames(raw);sel=0;results={};$("info").textContent=names.length?`تم تحميل ${names.length} اسمًا.`:"لم يتم العثور على أسماء.";render()}catch(err){names=[];render();$("info").textContent="تعذر قراءة الملف. استخدم TXT أو CSV أو Excel.";}};
+async function ensureMic(){if(micStream&&micStream.active)return true;try{micStream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:true,noiseSuppression:true,autoGainControl:true}});setupMeter(micStream);return true}catch(e){$("micTestText").textContent="الميكروفون غير متاح";$("micTestHint").textContent="تأكد من السماح بالميكروفون في إعدادات Safari لهذا الموقع.";$("micDot").className="mic-dot warn";return false}}
+function setupMeter(stream){try{audioCtx=audioCtx||new (window.AudioContext||window.webkitAudioContext)();if(audioCtx.state==='suspended')audioCtx.resume();analyser=audioCtx.createAnalyser();analyser.fftSize=256;const src=audioCtx.createMediaStreamSource(stream);src.connect(analyser);const data=new Uint8Array(analyser.fftSize);function loop(){if(!analyser)return;analyser.getByteTimeDomainData(data);let sum=0;for(const v of data){const n=(v-128)/128;sum+=n*n}const level=Math.min(100,Math.sqrt(sum/data.length)*500);$("micMeter").style.width=level+"%";$("liveMeter").style.width=level+"%";if(level>3){$("micDot").className="mic-dot on";$("liveDot").className="mic-dot on"}micAnim=requestAnimationFrame(loop)}loop()}catch(e){}}
+$("micTest").onclick=()=>$("micBox").classList.toggle("hidden");
+$("micStart").onclick=async()=>{const ok=await ensureMic();if(ok){$("micTestText").textContent="الميكروفون يعمل ✓";$("micTestHint").textContent="تحدث الآن؛ يجب أن يتحرك مؤشر مستوى الصوت."}};
+$("micStop").onclick=()=>{if(micStream){micStream.getTracks().forEach(t=>t.stop());micStream=null}$("micDot").className="mic-dot";$("micTestText").textContent="اختبار الميكروفون";$("micTestHint").textContent="اضغط «بدء اختبار الميكروفون» ثم تحدث.";$("micMeter").style.width="0"};
+$("start").onclick=async()=>{if(!(await ensureMic())){alert("لا يمكن بدء الاختبار قبل السماح بالميكروفون.");return}start(sel)};
 function start(i){sel=i;pos=0;order=shuffle(targets);results[names[i]]={items:[],score:0};$("home").classList.add("hidden");$("all").classList.add("hidden");$("result").classList.add("hidden");$("test").classList.remove("hidden");nextItem()}
-function beginSpeech(target){
-heard="";$("status").textContent="🎙️ انطق الصوت";$("mic").textContent="الميكروفون يستمع...";
-if(!("webkitSpeechRecognition" in window)){ $("mic").textContent="⚠️ التعرف الصوتي غير متاح في Safari بهذه الطريقة";return}
-try{
-recognizer=new webkitSpeechRecognition();recognizer.lang="ar-SA";recognizer.continuous=false;recognizer.interimResults=false;recognizer.maxAlternatives=3;
-recognizer.onresult=e=>{heard=e.results[0][0].transcript.trim();finish(compare(heard,target))};
-recognizer.onerror=e=>{if(e.error!=="aborted")finish(false)};recognizer.start()
-}catch(e){finish(false)}
-}
-function compare(spoken,target){
-let a=(spoken||"").trim().replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا");
-let b=target.replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا");
-return a===b;
-}
-function nextItem(){
-if(pos>=28){showResult();return}
-let target=order[pos];$("target").textContent=target;$("studentLabel").textContent=`الطالب: ${esc(names[sel])} — ${pos+1} من 28`;$("bar").style.width=(pos/28*100)+"%";
-$("status").textContent="استعد...";$("mic").textContent="🎙️ الميكروفون";let left=3;
-clearInterval(timer);$("timer").textContent="3.0";
-setTimeout(()=>beginSpeech(target),180);
-timer=setInterval(()=>{left-=.1;$("timer").textContent=Math.max(0,left).toFixed(1);if(left<=0){clearInterval(timer);if(recognizer)try{recognizer.abort()}catch(e){}finish(false)}},100)
-}
-function finish(ok){
-if(finished)return;finished=true;clearInterval(timer);if(recognizer)try{recognizer.stop()}catch(e){}recognizer=null;
-let target=order[pos],r=results[names[sel]];r.items.push({target,heard,ok});if(ok)r.score++;
-$("status").textContent=ok?"✓ صحيح":"✗ خطأ";$("mic").textContent=ok?"تم تسجيل الإجابة":"لم تُسجل إجابة صحيحة";
-pos++;setTimeout(()=>{finished=false;nextItem()},450)
-}
-function showResult(){
-$("test").classList.add("hidden");$("result").classList.remove("hidden");let r=results[names[sel]],bad=r.items.filter(x=>!x.ok);
-$("resultTitle").textContent="نتيجة الطالب: "+names[sel];$("score").textContent=`${r.score} / 28`;$("percent").textContent=`نسبة الإتقان: ${Math.round(r.score/28*100)}%`;
-$("errors").innerHTML=bad.length?bad.map(x=>`<div class="error"><b style="font-size:28px">${x.target}</b><span>${x.heard?`نطق الطالب: ${esc(x.heard)}`:"لم يُسجل صوت"} ❌</span></div>`).join(""):"<div class='error' style='background:#ecfdf3;border-color:#abefc6'><b>ممتاز 🎉</b><span>أتقن جميع الحروف.</span></div>";
-$("printAll").disabled=false
-}
-function all(){ $("home").classList.add("hidden");$("result").classList.add("hidden");$("all").classList.remove("hidden");let rows=names.map((n,i)=>{let r=results[n];return `<tr><td>${i+1}</td><td>${esc(n)}</td><td>${r?r.score+" / 28":"—"}</td><td>${r?Math.round(r.score/28*100)+"%":"—"}</td><td>${r?(r.items.filter(x=>!x.ok).map(x=>x.target).join("، ")||"لا يوجد"):"لم يُختبر"}</td></tr>`}).join("");$("allTable").innerHTML=`<table><tr><th>م</th><th>اسم الطالب</th><th>النتيجة</th><th>الإتقان</th><th>الأحرف غير المتقنة</th></tr>${rows}</table>`}
+function beginSpeech(target){heard="";$("status").textContent="🎙️ انطق الصوت";$("mic").innerHTML='<span id="liveDot" class="mic-dot on"></span>الميكروفون يستمع...';if(!recognitionAvailable){$("mic").innerHTML='<span class="mic-dot warn"></span>التعرف الصوتي غير مدعوم في هذا المتصفح';return false}try{const SR=window.SpeechRecognition||window.webkitSpeechRecognition;recognizer=new SR();recognizer.lang="ar-SA";recognizer.continuous=false;recognizer.interimResults=false;recognizer.maxAlternatives=5;recognizer.onstart=()=>{$("status").textContent="🎙️ استمع... انطق الآن"};recognizer.onresult=e=>{heard=e.results?.[0]?.[0]?.transcript?.trim()||"";finish(compare(heard,target))};recognizer.onerror=e=>{console.log('speech error',e.error);if(e.error==='not-allowed'||e.error==='service-not-allowed'){$("mic").innerHTML='<span class="mic-dot warn"></span>تم رفض التعرف الصوتي؛ اسمح بالمايكروفون لـ Safari';}else if(e.error==='no-speech'){$("mic").innerHTML='<span class="mic-dot warn"></span>لم يلتقط الكلام';}else{$("mic").innerHTML='<span class="mic-dot warn"></span>تعذر التعرف على الصوت'}finish(false)};recognizer.onend=()=>{};recognizer.start();return true}catch(e){$("mic").innerHTML='<span class="mic-dot warn"></span>تعذر تشغيل التعرف الصوتي';return false}}
+function compare(spoken,target){let a=(spoken||"").trim().replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا");let b=target.replace(/[ًٌٍَُِّْـ]/g,"").replace(/[أإآ]/g,"ا");return a===b}
+function nextItem(){if(pos>=28){showResult();return}let target=order[pos];$("target").textContent=target;$("studentLabel").textContent=`الطالب: ${esc(names[sel])} — ${pos+1} من 28`;$("bar").style.width=(pos/28*100)+"%";$("status").textContent="استعد...";$("mic").innerHTML='<span class="mic-dot"></span>الميكروفون جاهز';let left=3;clearInterval(timer);$("timer").textContent="3.0";finished=false;beginSpeech(target);timer=setInterval(()=>{left-=.1;$("timer").textContent=Math.max(0,left).toFixed(1);if(left<=0){clearInterval(timer);if(recognizer)try{recognizer.abort()}catch(e){}finish(false)}},100)}
+function finish(ok){if(finished)return;finished=true;clearInterval(timer);if(recognizer)try{recognizer.stop()}catch(e){}recognizer=null;let target=order[pos],r=results[names[sel]];r.items.push({target,heard,ok});if(ok)r.score++;$("status").textContent=ok?"✓ صحيح":"✗ خطأ";$("mic").innerHTML=ok?'<span class="mic-dot on"></span>تم تسجيل الإجابة':'<span class="mic-dot warn"></span>لم تُسجل إجابة صحيحة';pos++;setTimeout(()=>nextItem(),450)}
+function showResult(){$("test").classList.add("hidden");$("result").classList.remove("hidden");let r=results[names[sel]],bad=r.items.filter(x=>!x.ok);$("resultTitle").textContent="نتيجة الطالب: "+names[sel];$("score").textContent=`${r.score} / 28`;$("percent").textContent=`نسبة الإتقان: ${Math.round(r.score/28*100)}%`;$("errors").innerHTML=bad.length?bad.map(x=>`<div class="error"><b style="font-size:28px">${x.target}</b><span>${x.heard?`نطق الطالب: ${esc(x.heard)}`:"لم يُسجل صوت"} ❌</span></div>`).join(""):"<div class='error' style='background:#ecfdf3;border-color:#abefc6'><b>ممتاز 🎉</b><span>أتقن جميع الحروف.</span></div>";$("printAll").disabled=false}
+function all(){$("home").classList.add("hidden");$("result").classList.add("hidden");$("all").classList.remove("hidden");let rows=names.map((n,i)=>{let r=results[n];return `<tr><td>${i+1}</td><td>${esc(n)}</td><td>${r?r.score+" / 28":"—"}</td><td>${r?Math.round(r.score/28*100)+"%":"—"}</td><td>${r?(r.items.filter(x=>!x.ok).map(x=>x.target).join("، ")||"لا يوجد"):"لم يُختبر"}</td></tr>`}).join("");$("allTable").innerHTML=`<table><tr><th>م</th><th>اسم الطالب</th><th>النتيجة</th><th>الإتقان</th><th>الأحرف غير المتقنة</th></tr>${rows}</table>`}
 $("printStudent").onclick=()=>window.print();$("printAll").onclick=all;$("printAll2").onclick=()=>window.print();$("back").onclick=()=>{$("all").classList.add("hidden");$("home").classList.remove("hidden")};$("homeBtn").onclick=()=>{$("result").classList.add("hidden");$("home").classList.remove("hidden");render()};$("next").onclick=()=>{if(sel+1<names.length)start(sel+1);else all()};$("cancel").onclick=()=>{clearInterval(timer);if(recognizer)try{recognizer.abort()}catch(e){};$("test").classList.add("hidden");$("home").classList.remove("hidden")};
+let scale=1;function setScale(s){scale=Math.max(.85,Math.min(1.4,s));document.documentElement.style.setProperty('--scale',scale);$("zoomReset").textContent=Math.round(scale*100)+"%";localStorage.setItem('uiScale',scale)}scale=parseFloat(localStorage.getItem('uiScale')||'1');setScale(scale);$("zoomIn").onclick=()=>setScale(scale+.1);$("zoomOut").onclick=()=>setScale(scale-.1);$("zoomReset").onclick=()=>setScale(1);
 render();
 </script>
 </body></html>
